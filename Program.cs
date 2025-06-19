@@ -40,6 +40,21 @@ else if (!input.HasValue)
 }
 ;
 */
+
+int n = 12;
+switch (n)
+{
+    case > 0:
+        Console.WriteLine("pos");
+        break;
+    case < 0:
+        Console.WriteLine("neg");
+        break;
+    case 0:
+        Console.WriteLine("0");
+        break;
+          
+}
 // 3.Créer un programme qui affiche "Vous êtes mineur" si l’âge est inférieur à 18.
 
 /*
