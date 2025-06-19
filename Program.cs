@@ -250,14 +250,64 @@ Console.WriteLine(number > 0 && number % 2 == 0 && number > 100);
 
 
 // 21.Afficher les nombres de 1 à 10 avec une boucle `for`.
-
+/*
+for (int i = 1; i <= 10; i++) Console.WriteLine(i);
+*/
 // 22. Afficher les nombres pairs entre 1 et 20.
+/*
+for (int i = 1; i <= 20; i++) if (i % 2 == 0) Console.WriteLine(i);
+*/
 // 23. Utiliser une boucle pour afficher chaque élément d'un tableau.
+/*
+int[] nombres = { 1, 2, 3, 4, 5 };
+
+foreach(int nombre in nombres) Console.WriteLine(nombre);
+*/
+
 // 24. Demander à l'utilisateur un nombre de 1 à 10 et afficher la table de multiplication.
+/*
+int number;
+do
+{
+    Console.WriteLine("Saisir un nombre entre 1 et 10: ");
+    number = Convert.ToInt32(Console.ReadLine());
+} while (number < 1 || number > 10);
+
+for (int i = 0; i < 10; i++)
+{
+    Console.WriteLine(number * (i + 1));
+}
+*/
 // 25. Afficher les éléments d'une chaîne de caractères un par un.
+/*
+Console.WriteLine("Saisir une string: ");
+string? chaine = Console.ReadLine();
+foreach (char c in chaine) Console.WriteLine(c);
+*/
 // 26. Utiliser une boucle pour afficher les nombres de 0 à 100 avec un pas de 10.
+/*
+for (int i = 0; i <= 100; i=i+10) Console.WriteLine(i);
+*/
 // 27. Afficher les éléments d'une liste avec leurs indices.
+/*
+string[] list = { "a", "b", "c", "d", "e" };
+for (int i = 0; i < list.Length; i++) Console.WriteLine($"element {i} : {list[i]}");
+*/
 // 28. Afficher les nombres de 10 à 1 en ordre décroissant avec une boucle.
+/*
+for (int i = 10; i > 0; i--) Console.WriteLine(i);
+*/
 // 29. Créer une boucle qui calcule la somme des nombres de 1 à 50.
-// 30. Utiliser une boucle pour afficher les 5 premières lettres de l'alphabet.
+/*
+int somme = 0;
+for (int i = 1; i <= 50; i++)
+{
+    somme += i;
+}
+Console.WriteLine(somme);
+*/
+// 30. Utiliser une boucle pour afficher les 5 premières lettres de l'alphabet
+for (int i = 0; i < 5; i++) Console.WriteLine((char)(i + 97));
+
+
 
