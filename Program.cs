@@ -340,6 +340,7 @@ do
     Console.WriteLine("enter a positive: ");
     input = Convert.ToInt32(Console.ReadLine());
 } while (input < 0);
+Console.WriteLine("nombre positif");
 */
 
 // 34. Créer une boucle infinie qui demande un mot de passe jusqu'à ce qu'il soit correct.
@@ -420,45 +421,141 @@ foreach (int element in table)
     Console.WriteLine(element);
 }
 */
- 
+
 // 5. Utilisation des boucles avec `break` et `continue`
- 
+
 // 41. Utiliser une boucle pour afficher les nombres de 1 à 20, mais arrêter dès que vous atteignez 10.
+/*
 for (int i = 1; i <= 20; i++)
 {
     Console.WriteLine(i);
     if (i == 10) break;
 }
-
+*/
 // 42. Créer une boucle qui demande un nombre et s'arrête si le nombre est 0.
-
-
+/*
+int input;
+do
+{
+    Console.WriteLine("enter a number:");
+    input = Convert.ToInt32(Console.ReadLine());
+} while (input != 0);
+*/
 // 43. Utiliser `continue` pour afficher uniquement les nombres impairs de 1 à 10.
-
-
+/*
+for (int i = 1; i <= 10; i++)
+{
+    if (i % 2 == 0) continue;
+    Console.WriteLine(i);
+}
+*/
 // 44. Écrire une boucle qui affiche les nombres de 1 à 20, mais saute les multiples de 3.
-
-
+/*
+for (int i = 1; i <= 20; i++)
+{
+    if (i % 3 == 0) continue;
+    Console.WriteLine(i);
+}
+*/
 // 45. Demander à l'utilisateur un nombre et afficher tous les nombres de 1 à ce nombre, sauf ceux divisibles par 4.
-
-
+/*
+Console.WriteLine("enter a number: ");
+int input = Convert.ToInt32(Console.ReadLine());
+for (int i = 1; i <= input; i++)
+{
+    if (i % 4 == 0) continue;
+    Console.WriteLine(i);
+}
+*/
 // 46. Créer une boucle qui affiche les éléments d'un tableau mais s'arrête dès qu'elle rencontre un élément spécifique.
-
-
+/*
+for (int i = 0; i < tableau.Length; i++)
+{
+    Console.WriteLine(tableau[i]);
+    if (tableau[i] == 2025) break;
+}
+*/
 // 47. Utiliser `break` pour quitter une boucle infinie après 5 itérations.
-
-
+/*
+int i = 0;
+while (true)
+{
+    Console.WriteLine(i);
+    if (i == 4) break;
+    i++;
+}
+*/
 // 48. Utiliser `continue` pour ignorer les lettres 'a' et 'e' lors de l'affichage des lettres d'un mot.
-
-
+/*
+const string mot = "banjouerno";
+foreach(char l in mot)
+{
+    if (l == 'a' || l == 'e') continue;
+    Console.WriteLine(l);
+}
+*/
 // 49. Écrire une boucle qui demande à l'utilisateur de saisir un mot, mais qui s'arrête dès qu'il entre "stop".
-
-
+/*
+string input;
+do
+{
+    Console.WriteLine("enter a word: ");
+    input = Console.ReadLine();
+} while (input != "stop");
+*/
 // 50. Afficher les éléments d’une liste, arrêter la boucle si un même élément apparaît une deuxième fois.
+/**
+ * PAS TERMINE
+/*
+List<int[]> list = new List<int[]>();
+list = { 1,2,3,4,5,4,6,7,8,9,10};
+List<int> testList = list;
+*/
+
+using System.Linq; // Nécessaire pour Max, Min, Average
+
+//EXO 5
+
+Console.WriteLine("--- Gestion des notes ---\n");
+Console.WriteLine("Veuillez saisir cinq notes: ");
+const int nbNotes = 5;
+int[] notes = new int[nbNotes];
+
+for (int i = 0; i < nbNotes; i++)
+{
+    do
+    {
+        Console.Write($"\t- Merci de saisir la note {i+1} (sur /20) : ");
+        notes[i] = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine();
+    } while (notes[i] < 0 || notes[i] > 20);
+}
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine($"La meilleure note est de {notes.Max()}");
+Console.ForegroundColor = ConsoleColor.Red;
+Console.WriteLine($"La moins bonne note est de {notes.Min()}");
+Console.ResetColor();
+Console.WriteLine($"La moyenne est de {notes.Average()}");
 
 
-
-
+// Autre avec List
+/*
+Console.WriteLine("--- Gestion des notes ---\n");
+Console.WriteLine("Veuillez saisir cinq notes: ");
+List<int> notes = new List<int>();
+do
+{
+    Console.Write($"- Merci de saisir la note {notes.Count + 1} (sur /20) : ");
+    notes.Add(Convert.ToInt32(Console.ReadLine()));
+    Console.WriteLine();
+} while ((notes[notes.Count] < 0 || notes[notes.Count] > 20) || notes.Count < 5);
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine($"La meilleure note est de {notes.Max()}");
+Console.ForegroundColor = ConsoleColor.Red;
+Console.WriteLine($"La moins bonne note est de {notes.Min()}");
+Console.ResetColor();
+Console.WriteLine($"La moyenne est de {notes.Average()}");
+*/
 
 //KATAS
 /*
