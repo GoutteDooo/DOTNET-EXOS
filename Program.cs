@@ -307,7 +307,173 @@ for (int i = 1; i <= 50; i++)
 Console.WriteLine(somme);
 */
 // 30. Utiliser une boucle pour afficher les 5 premières lettres de l'alphabet
+/*
 for (int i = 0; i < 5; i++) Console.WriteLine((char)(i + 97));
+*/
+
+// 31.Utiliser une boucle `while` pour afficher les nombres de 1 à 10.
+/*
+int i = 1;
+while (i <= 10)
+{
+    Console.WriteLine(i);
+    i++;
+}
+*/
+// 32. Utiliser une boucle `while` pour calculer la somme des nombres de 1 à 100.
+/*
+int i = 1;
+int somme = 0;
+while (i <= 100)
+{
+    somme += i;
+    i++;
+}
+Console.WriteLine(somme);
+*/
+
+// 33. Demander à l'utilisateur un nombre et continuer à demander tant que ce nombre est négatif.
+/*
+int input;
+do
+{
+    Console.WriteLine("enter a positive: ");
+    input = Convert.ToInt32(Console.ReadLine());
+} while (input < 0);
+*/
+
+// 34. Créer une boucle infinie qui demande un mot de passe jusqu'à ce qu'il soit correct.
+/*
+string password = "toto";
+string input;
+do
+{
+    Console.WriteLine("enter a password:");
+    input = Console.ReadLine();
+} while (input != password);
+*/
+
+// 35. Utiliser `while` pour afficher les multiples de 5 entre 1 et 50.
+/*
+int i = 1;
+while (i <= 50)
+{
+    Console.WriteLine(i * 5);
+    i++;
+}
+*/
+
+// 36. Écrire une boucle qui affiche les nombres de 1 à 10, puis termine avec un message "Fin de la boucle".
+/*
+for (int i = 1; i <= 10; i++)
+{
+    Console.WriteLine(i);
+}
+Console.WriteLine("Fin de la boucle");
+*/
+// 37. Créer une boucle `while` qui décrémente un nombre à partir de 10 jusqu'à 0.
+/*
+int i = 10;
+while (i >= 0)
+{
+    Console.WriteLine(i);
+    i--;
+}
+*/
+// 38. Demander un nombre à l'utilisateur et calculer sa factorielle avec une boucle `while`.
+/*
+int input;
+do
+{
+    Console.WriteLine("enter a num:");
+    input = Convert.ToInt32(Console.ReadLine());
+} while (input <= 0);
+int somme = input;
+for (int i = input - 1; i > 0; i--)
+{
+    somme *= i;
+}
+Console.WriteLine($"La factorielle de {input} vaut: {somme}");
+*/
+// 39. Afficher les nombres pairs de 2 à 200 si ils sont divisible par 3 avec une boucle `while`.
+/*
+int i = 2;
+while (i <= 200)
+{
+    if (i % 3 == 0) Console.WriteLine(i);
+    i += 2;
+}
+*/
+
+// 40. Créer un tableau d'une certaine longueur, demander à l'utilisateur des nombres et les affecter au tableau tant qu'il n'est pas rempli entièrement.
+/*
+int[] table = new int[10];
+for (int i = 0; i < table.Length; i++)
+{
+    int input;
+    Console.WriteLine("saisir un nombre: ");
+    input = Convert.ToInt32(Console.ReadLine());
+    table[i] = input;
+}
+foreach (int element in table)
+{
+    Console.WriteLine(element);
+}
+*/
+ 
+// 5. Utilisation des boucles avec `break` et `continue`
+ 
+// 41. Utiliser une boucle pour afficher les nombres de 1 à 20, mais arrêter dès que vous atteignez 10.
+for (int i = 1; i <= 20; i++)
+{
+    Console.WriteLine(i);
+    if (i == 10) break;
+}
+
+// 42. Créer une boucle qui demande un nombre et s'arrête si le nombre est 0.
+
+
+// 43. Utiliser `continue` pour afficher uniquement les nombres impairs de 1 à 10.
+
+
+// 44. Écrire une boucle qui affiche les nombres de 1 à 20, mais saute les multiples de 3.
+
+
+// 45. Demander à l'utilisateur un nombre et afficher tous les nombres de 1 à ce nombre, sauf ceux divisibles par 4.
+
+
+// 46. Créer une boucle qui affiche les éléments d'un tableau mais s'arrête dès qu'elle rencontre un élément spécifique.
+
+
+// 47. Utiliser `break` pour quitter une boucle infinie après 5 itérations.
+
+
+// 48. Utiliser `continue` pour ignorer les lettres 'a' et 'e' lors de l'affichage des lettres d'un mot.
+
+
+// 49. Écrire une boucle qui demande à l'utilisateur de saisir un mot, mais qui s'arrête dès qu'il entre "stop".
+
+
+// 50. Afficher les éléments d’une liste, arrêter la boucle si un même élément apparaît une deuxième fois.
 
 
 
+
+
+//KATAS
+/*
+int[] list = { 1, 2, 3, 4 };
+int step = 2;
+List<int[]> newList = new List<int[]>();
+for (int i = 0; i < list.Length-step; i++)
+{
+    int[] temp = new int[step];
+    for (int j = 0; j < step; j++) temp[j] = list[i + j];
+    newList.Add(temp);
+}
+
+for (int i = 0; i < newList.Count; i++)
+{
+    Console.WriteLine(string.Join(", ", newList[i]));
+}
+*/
