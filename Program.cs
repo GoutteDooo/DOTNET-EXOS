@@ -672,7 +672,114 @@ while (true)
 
 //Console.WriteLine(numTaille != 0 ? $"Prenez la taille {numTaille}" : "Aucune taille ne vous correspond.");
 
-// EXO 9 - Gestion des notes PART 2
+// EXO 9 - Gestion des notes PARTIE 2
+
+// -- Variables Globales --
+// ------------------------
+List<int> notes = new List<int>(); // tableau dyna de notes de longueur 0 à l'initialisation
+bool saisies = false; // Savoir si l'utilisateur entre des notes ou non
+int input;
+
+// Tant que à l'infini
+while(true)
+{
+    afficherMenu();
+    // Demander une entrée utilisateur
+    input = Convert.ToInt32(Console.ReadLine());
+    // Si entrée invalide, recommencer
+    if (input < 0 || input > 4) continue;
+    Console.Clear();
+    if (input == 0) Environment.Exit(0);
+    if (input == 1) saisirNotes();
+    // Si le tableau ne comporte pas encore de notes, interdire l'accès à ces options
+    if (notes.Count == 0)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Aucune note n'a encore été entrée!");
+        continue;
+    }
+    if (input == 2) afficherNoteMax();
+    if (input == 3) afficherNoteMin();
+    if (input == 4) afficherNoteMoy();
+}
+
+void saisirNotes()
+{
+    Console.Clear();
+    // Colorer en vert
+    Console.ForegroundColor = ConsoleColor.Green;
+    // Afficher texte de saisie
+    Console.WriteLine("------ Saisir les notes ------\n" +
+        "(999 pour stopper la saisie\n");
+    // Réinitialiser les couleurs
+    // Tant que à l'infini
+    Console.ResetColor();
+    while (true)
+    {
+        // Demander à l'utilisateur de saisir la note "notes.Length + 1"
+        Console.Write($"Merci de saisir la note {notes.Count + 1} (sur /20) : ");
+        int note = Convert.ToInt32(Console.ReadLine());
+
+        // Si la note est de 999, break la boucle
+        if (note == 999) {
+            Console.Clear();
+            break;
+        }
+        // Si la note n'est pas comprise entre 0 et 20,
+        if (note < 0 || note > 20)
+        {
+            // Afficher l'erreur
+            Console.ForegroundColor= ConsoleColor.Red;
+            Console.WriteLine("\t\tErreur de saisie, la note est sur 20 !");
+            Console.ResetColor();
+            // Relancer une itération
+            continue;
+        }
+
+        // Sinon, cela veut dire que l'on a entré une bonne note
+        notes.Add(note); // Ajouter cette note à la liste
+    }
+}
+
+static void afficherMenu()
+{
+    Console.ResetColor();
+    Console.Write("--- Gestion des notes avec menu ---\n" +
+        "1---Saisir les notes\n" +
+        "2---La plus grande note\n" +
+        "3---La plus petite note\n" +
+        "4---La moyenne des notes\n" +
+        "0---Quitter\n" +
+        "\n" +
+        "Faites votre choix: ");
+}
+
+void afficherNoteMax()
+{
+    Console.ForegroundColor = ConsoleColor.Green;
+    Console.WriteLine("------ La plus grande note ------\n" +
+        "\n" +
+        $"La note la plus grande est: {notes.Max()}/20\n");
+}
+
+void afficherNoteMin()
+{
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine("------ La plus petite note ------\n" +
+        "\n" +
+        $"La note la plus petite est : {notes.Min()}/20\n");
+}
+
+void afficherNoteMoy()
+{
+    Console.ForegroundColor = ConsoleColor.Blue;
+    Console.WriteLine("------ La moyenne des notes ------\n" +
+        "\n" +
+        $"La note moyenne est de : {Math.Round(notes.Average(), 2)}/20\n");
+}
+
+
+
 
 //KATAS
 /*
