@@ -597,25 +597,25 @@ while (true)
 */
 
 //EXO 8
-Console.WriteLine("--- Quelle taille dois-je prendre ? ---");
+//Console.WriteLine("--- Quelle taille dois-je prendre ? ---");
 
-/**
- * Retourne la Taille du vêtement recommandée en fonction de la taille (en cm) et du poids (en kg) fournis* 
- * - La fonction prend deux paramètres :
- *   - `t` : taille de la personne (en cm)
- *   - `p` : poids de la personne (en kg)
- * 
- * - Les tailles retournées vont de 1 à 3, ou 0 si aucune taille ne correspond aux critères.
- * 
- * Exemples :
- *   - `obtenirTaille(170, 50)` retourne `1`
- *   - `obtenirTaille(180, 65)` retourne `3`
- * 
- * @param t Taille de la personne (en cm)
- * @param p Poids de la personne (en kg)
- * @return La taille recommandée (1, 2, 3) ou 0 si aucune taille n'est trouvée.
- */
-static int obtenirTaille(int t, int p)
+///**
+// * Retourne la Taille du vêtement recommandée en fonction de la taille (en cm) et du poids (en kg) fournis* 
+// * - La fonction prend deux paramètres :
+// *   - `t` : taille de la personne (en cm)
+// *   - `p` : poids de la personne (en kg)
+// * 
+// * - Les tailles retournées vont de 1 à 3, ou 0 si aucune taille ne correspond aux critères.
+// * 
+// * Exemples :
+// *   - `obtenirTaille(170, 50)` retourne `1`
+// *   - `obtenirTaille(180, 65)` retourne `3`
+// * 
+// * @param t Taille de la personne (en cm)
+// * @param p Poids de la personne (en kg)
+// * @return La taille recommandée (1, 2, 3) ou 0 si aucune taille n'est trouvée.
+// */
+//static int obtenirTaille(int t, int p)
 //{
 //    // Définir des plages de valeurs définies pour chaque taille
 //    /* --- Taille 1 --- */
@@ -636,35 +636,43 @@ static int obtenirTaille(int t, int p)
 
 //    return 0; // aucune des conditions n'est respectée, la taille n'existe pas
 //}
-{
-    // Définir les intervalles de poids et de taille pour chaque taille
-    int[,] tailles = new int[,] {
-        {1, 43, 48, 145, 172}, {1, 48, 54, 145, 169}, {1, 54, 60, 145, 166}, {1, 60, 66, 145, 163}, // Taille 1
-        {2, 48, 54, 169, 183}, {2, 54, 60, 166, 178}, {2, 60, 66, 163, 175}, {2, 66, 72, 160, 172}, // Taille 2
-        {3, 54, 60, 178, 184}, {3, 60, 66, 175, 184}, {3, 66, 72, 172, 184}, {3, 72, 78, 163, 184}  // Taille 3
-    };
 
-    // Parcourir les intervalles pour chaque taille
-    for (int i = 0; i < tailles.GetLength(0); i++)
-    {
-        if (p >= tailles[i, 1] && p < tailles[i, 2] && t >= tailles[i, 3] && t < tailles[i, 4])
-        {
-            return tailles[i, 0]; // Retourne la taille correspondante
-        }
-    }
+//static int obtenirTailleOpti(int t, int p)
+//{
+//    // Définir les intervalles de poids et de taille pour chaque taille
+//    int[,] tailles = new int[,] {
+//        {1, 43, 48, 145, 172}, {1, 48, 54, 145, 169}, {1, 54, 60, 145, 166}, {1, 60, 66, 145, 163}, // Taille 1
+//        {2, 48, 54, 169, 183}, {2, 54, 60, 166, 178}, {2, 60, 66, 163, 175}, {2, 66, 72, 160, 172}, // Taille 2
+//        {3, 54, 60, 178, 184}, {3, 60, 66, 175, 184}, {3, 66, 72, 172, 184}, {3, 72, 78, 163, 184}  // Taille 3
+//    };
 
-    return 0; // Aucun intervalle n'est respecté
-}
+//    // Parcourir les intervalles pour chaque taille
+//    for (int i = 0; i < tailles.GetLength(0); i++)
+//    {
+//        int poidsMin = tailles[i, 1],
+//            poidsMax = tailles[i, 2],
+//            tailleMin = tailles[i, 3],
+//            tailleMax = tailles[i, 4];
+//        if (p >= poidsMin && p < poidsMax && t >= tailleMin && t < tailleMax)
+//        {
+//            return tailles[i, 0]; // Retourne la taille correspondante
+//        }
+//    }
 
-// Demander à l'utilisateur d'entrer sa taille en cm
-Console.Write("\nEntrez votre taille (en cm) : ");
-int taille = Convert.ToInt32(Console.ReadLine());
-// Puis, son poids en kg
-Console.Write("\n\nEntrez votre poids (en kg) : ");
-int poids = Convert.ToInt32(Console.ReadLine());
-int numTaille = obtenirTaille(taille, poids);
+//    return 0; // Aucun intervalle n'est respecté
+//}
 
-Console.WriteLine(numTaille != 0 ? $"Prenez la taille {numTaille}" : "Aucune taille ne vous correspond.");
+//// Demander à l'utilisateur d'entrer sa taille en cm
+//Console.Write("\nEntrez votre taille (en cm) : ");
+//int taille = Convert.ToInt32(Console.ReadLine());
+//// Puis, son poids en kg
+//Console.Write("\n\nEntrez votre poids (en kg) : ");
+//int poids = Convert.ToInt32(Console.ReadLine());
+//int numTaille = obtenirTaille(taille, poids);
+
+//Console.WriteLine(numTaille != 0 ? $"Prenez la taille {numTaille}" : "Aucune taille ne vous correspond.");
+
+// EXO 9 - Gestion des notes PART 2
 
 //KATAS
 /*
