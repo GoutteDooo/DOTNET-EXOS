@@ -677,18 +677,17 @@ while (true)
 // -- Variables Globales --
 // ------------------------
 List<int> notes = new List<int>(); // tableau dyna de notes de longueur 0 à l'initialisation
-bool saisies = false; // Savoir si l'utilisateur entre des notes ou non
 int input;
 
-// Tant que à l'infini
+// Boucle infini
 while(true)
 {
     afficherMenu();
     // Demander une entrée utilisateur
     input = Convert.ToInt32(Console.ReadLine());
     // Si entrée invalide, recommencer
-    if (input < 0 || input > 4) continue;
     Console.Clear();
+    if (input < 0 || input > 4) continue;
     if (input == 0) Environment.Exit(0);
     if (input == 1) saisirNotes();
     // Si le tableau ne comporte pas encore de notes, interdire l'accès à ces options
@@ -705,28 +704,28 @@ while(true)
 
 void saisirNotes()
 {
-    Console.Clear();
     // Colorer en vert
     Console.ForegroundColor = ConsoleColor.Green;
     // Afficher texte de saisie
     Console.WriteLine("------ Saisir les notes ------\n" +
         "(999 pour stopper la saisie\n");
     // Réinitialiser les couleurs
-    // Tant que à l'infini
     Console.ResetColor();
+    // Boucle infinie
     while (true)
     {
         // Demander à l'utilisateur de saisir la note "notes.Length + 1"
         Console.Write($"Merci de saisir la note {notes.Count + 1} (sur /20) : ");
-        int note = Convert.ToInt32(Console.ReadLine());
+        bool estEntier = int.TryParse(Console.ReadLine(), out int note);
 
         // Si la note est de 999, break la boucle
         if (note == 999) {
+            // On clear la console pour pouvoir réafficher le menu principal
             Console.Clear();
             break;
         }
-        // Si la note n'est pas comprise entre 0 et 20,
-        if (note < 0 || note > 20)
+        // Si la note n'est pas comprise entre 0 et 20 ou que l'utilisateur a fait une erreur de saisie
+        if (!estEntier || note < 0 || note > 20)
         {
             // Afficher l'erreur
             Console.ForegroundColor= ConsoleColor.Red;
