@@ -838,67 +838,67 @@ foreach (string p in prenoms)
 // -- Exercice 4 --
 // ----------------
 
-var capitals = new Dictionary<string, string>();
-while (true)
-{
-    afficherMenu();
-    //Saisie utilisateur
-    Console.Write("Veuillez saisir une commande: ") ;
-    int input = Convert.ToInt32(Console.ReadLine());
-    if (input == 0) Environment.Exit(0);
-    Console.Clear();
-    if (input == 1) afficherInsertion();
-    if (input == 2) afficherRecherche();
+//var capitals = new Dictionary<string, string>();
+//while (true)
+//{
+//    afficherMenu();
+//    //Saisie utilisateur
+//    Console.Write("\n Veuillez saisir une commande: ") ;
+//    int input = Convert.ToInt32(Console.ReadLine());
 
-}
-void afficherMenu()
-{
-    Console.WriteLine("--- Pays et Capitales ---\n" +
-        "\n" +
-        "\t (1) - Insérez un pays et une capitale\n" +
-        "\t (2) - Rechercher une capitale\n" +
-        "\n" +
-        "\t (0) - Quitter le programme" +
-        "\n" +
-        $"Le nombre total de couple pays/capitale est de : {capitals.Count}"
-        );
+//    if (input == 0) Environment.Exit(0);
+//    Console.Clear();
+//    if (input == 1) afficherInsertion();
+//    if (input == 2) afficherRecherche();
+//    Console.Clear();
+//}
 
-}
+//void afficherMenu()
+//{
+//    Console.WriteLine("--- Pays et Capitales ---\n" +
+//        "\n" +
+//        "\t (1) - Insérez un pays et une capitale\n" +
+//        "\t (2) - Rechercher une capitale\n" +
+//        "\n" +
+//        "\t (0) - Quitter le programme\n" +
+//        "\n" +
+//        $"Le nombre total de couple pays/capitale est de : {capitals.Count}"
+//        );
 
-void afficherInsertion()
-{
-    while (true)
-    {
-    Console.Write("Entrez un pays et sa capitale ([pays] [capitale]) ('stop' si vous souhaitez arrêter) ");
-    string? input = Console.ReadLine();
-    if (input == "stop") break;
+//}
 
-    string[] kvInput = input.Split(" ");
-    if (kvInput.Length != 2 || kvInput[0] == "" || kvInput[1] == "")
-    {
-        Console.WriteLine("Erreur lors de l'écriture, veuillez recommencer SVP.");
-        continue;
-    }
-    capitals.Add(kvInput[0], kvInput[1]);
-    }
-    Console.Clear();
-}
+//void afficherInsertion()
+//{
+//    while (true)
+//    {
+//    Console.Write("Entrez un pays et sa capitale ([pays] [capitale]) ('stop' si vous souhaitez arrêter) ");
+//    string? input = Console.ReadLine();
+//    if (input == "stop") break;
 
-void afficherRecherche()
-{
-    // Rechercher une capitale à partir d'un pays
-    while (true)
-    {
-        Console.Write("Rechercher une capitale à partir d'un pays ('stop' pour revenir au menu principal): ");
-        string input = Console.ReadLine();
-        if (input == "stop") break;
-        if (capitals.ContainsKey(input))
-            Console.WriteLine($"La capitale de {input} est {capitals[input]}");
-        else
-            Console.WriteLine("Cette capitale n'a aucun pays d'associé.");
-    }
-    Console.Clear();
-}
+//    string[] kvInput = input.Split(" ");
+//    if (kvInput.Length != 2 || kvInput[0] == "" || kvInput[1] == "")
+//    {
+//        Console.WriteLine("Erreur lors de l'écriture, veuillez recommencer SVP.");
+//        continue;
+//    }
+//    capitals.Add(kvInput[0], kvInput[1]);
+//    }
+//}
+
+//void afficherRecherche()
+//{
+//    // Rechercher une capitale à partir d'un pays
+//    while (true)
+//    {
+//        Console.Write("Rechercher une capitale à partir d'un pays ('stop' pour revenir au menu principal): ");
+//        string input = Console.ReadLine();
+//        if (input == "stop") break;
+//        if (capitals.ContainsKey(input))
+//            Console.WriteLine($"La capitale de {input} est {capitals[input]}");
+//        else
+//            Console.WriteLine("Cette capitale n'a aucun pays d'associé.");
+//    }
+//}
 
 // -- Exercice 5 --
 // ----------------
@@ -933,6 +933,38 @@ foreach ((string pays, string capitale) in capitales)
 }
 Console.WriteLine($"nombre d'éléments parcourus: {index}");
 */
+
+// -------------------
+// -- LES FONCTIONS --
+// -------------------
+
+// -- Exercice 1
+// -------------
+void afficherSeparateur()
+{
+    string tirets = "";
+    for (int i = 0; i < 30; i++)
+        tirets += '-';
+    Console.WriteLine( tirets );
+}
+
+//void print(string message)
+//{
+//    Console.WriteLine( message );
+//}
+
+//afficherSeparateur();
+//print(message: "coucou") ;
+//afficherSeparateur();
+//print("toto");
+//afficherSeparateur();
+
+
+// -- Exercice 2
+// -------------
+
+
+
 
 //KATAS
 /*
