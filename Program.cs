@@ -950,9 +950,12 @@ void afficherSeparateur()
     Console.WriteLine( tirets );
 }
 
-void print(string message)
+void print(string message, bool endLine = true)
 {
-    Console.WriteLine(message);
+    if (endLine)
+        Console.WriteLine(message);
+    else
+        Console.Write(message);
 }
 
 //afficherSeparateur();
@@ -978,10 +981,10 @@ while (true)
     if (input == 0) break;
     numbers.Add(input);
 }
-int sum = 0;
-foreach (int a in numbers)
-    sum += a;
-print($"\t Résultat : {numbers.Sum()}");
+
+List<string> chaines = numbers.Select(n => n.ToString()).ToList();
+
+print($"La somme de {String.Join('+', chaines)} est de : {numbers.Sum()}");
 
 
 
