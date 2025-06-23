@@ -967,7 +967,7 @@ void print(string message, bool endLine = true)
 
 // -- Exercice 2
 // -------------
-
+/*
 int Additionner(int a, int b)
 {
     return a + b;
@@ -985,24 +985,35 @@ while (true)
 List<string> chaines = numbers.Select(n => n.ToString()).ToList();
 
 print($"La somme de {String.Join('+', chaines)} est de : {numbers.Sum()}");
+*/
 
-
-
-//KATAS
+// 51. Écrire un programme qui affiche la table de multiplication de 1 à 10 avec des boucles imbriquées.
 /*
-int[] list = { 1, 2, 3, 4 };
-int step = 2;
-List<int[]> newList = new List<int[]>();
-for (int i = 0; i < list.Length-step; i++)
+for (int i = 1; i <= 10; i++)
 {
-    int[] temp = new int[step];
-    for (int j = 0; j < step; j++) temp[j] = list[i + j];
-    newList.Add(temp);
-}
-
-
-for (int i = 0; i < newList.Count; i++)
-{
-    Console.WriteLine(string.Join(", ", newList[i]));
+    Console.WriteLine($"--- Table de {i} ---");
+    for (int j = 1; j <= 10; j++)
+    {
+        Console.WriteLine($"{i} x {j} = {i*j}");
+    }
 }
 */
+
+// 52. Créer un programme qui affiche un rectangle de caractères "X" de taille donnée par l'utilisateur.
+/*
+Console.Write("Entrer un nombre: ");
+int input = Convert.ToInt32(Console.ReadLine());
+for (int i  = 0; i < input; i++)
+{
+    for (int j = 0; j < input; j++)
+    {
+        Console.Write("X");
+    }
+    Console.WriteLine();
+}
+*/
+
+// 53. Utiliser des boucles imbriquées pour afficher une pyramide de nombres.
+
+Console.Write("Entrer un nombre: ");
+int input = Convert.ToInt32(Console.ReadLine());
