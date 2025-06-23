@@ -512,6 +512,7 @@ list = { 1,2,3,4,5,4,6,7,8,9,10};
 List<int> testList = list;
 */
 
+using System.Data;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335; // Nécessaire pour Max, Min, Average
 
@@ -837,68 +838,69 @@ foreach (string p in prenoms)
 
 // -- Exercice 4 --
 // ----------------
+/*
+var capitals = new Dictionary<string, string>();
+while (true)
+{
+    afficherMenu();
+    //Saisie utilisateur
+    Console.Write("\n Veuillez saisir une commande: ");
+    int input = Convert.ToInt32(Console.ReadLine());
 
-//var capitals = new Dictionary<string, string>();
-//while (true)
-//{
-//    afficherMenu();
-//    //Saisie utilisateur
-//    Console.Write("\n Veuillez saisir une commande: ") ;
-//    int input = Convert.ToInt32(Console.ReadLine());
+    if (input == 0) Environment.Exit(0);
+    Console.Clear();
+    if (input == 1) afficherInsertion();
+    if (input == 2) afficherRecherche();
+    Console.Clear();
+}
 
-//    if (input == 0) Environment.Exit(0);
-//    Console.Clear();
-//    if (input == 1) afficherInsertion();
-//    if (input == 2) afficherRecherche();
-//    Console.Clear();
-//}
+void afficherMenu()
+{
+    Console.WriteLine("--- Pays et Capitales ---\n" +
+        "\n" +
+        "\t (1) - Insérez un pays et une capitale\n" +
+        "\t (2) - Rechercher une capitale\n" +
+        "\n" +
+        "\t (0) - Quitter le programme\n" +
+        "\n" +
+        $"Le nombre total de couple pays/capitale est de : {capitals.Count}"
+        );
 
-//void afficherMenu()
-//{
-//    Console.WriteLine("--- Pays et Capitales ---\n" +
-//        "\n" +
-//        "\t (1) - Insérez un pays et une capitale\n" +
-//        "\t (2) - Rechercher une capitale\n" +
-//        "\n" +
-//        "\t (0) - Quitter le programme\n" +
-//        "\n" +
-//        $"Le nombre total de couple pays/capitale est de : {capitals.Count}"
-//        );
+}
 
-//}
+void afficherInsertion()
+{
+    while (true)
+    {
+        Console.Write("Entrez un pays et sa capitale ([pays] [capitale]) ('stop' si vous souhaitez arrêter) ");
+        string? input = Console.ReadLine();
+        if (input == "stop") break;
 
-//void afficherInsertion()
-//{
-//    while (true)
-//    {
-//    Console.Write("Entrez un pays et sa capitale ([pays] [capitale]) ('stop' si vous souhaitez arrêter) ");
-//    string? input = Console.ReadLine();
-//    if (input == "stop") break;
+        string[] kvInput = input.Split(" ");
+        if (kvInput.Length != 2 || kvInput[0] == "" || kvInput[1] == "")
+        {
+            Console.WriteLine("Erreur lors de l'écriture, veuillez recommencer SVP.");
+            continue;
+        }
+        capitals.Add(kvInput[0], kvInput[1]);
+    }
+}
 
-//    string[] kvInput = input.Split(" ");
-//    if (kvInput.Length != 2 || kvInput[0] == "" || kvInput[1] == "")
-//    {
-//        Console.WriteLine("Erreur lors de l'écriture, veuillez recommencer SVP.");
-//        continue;
-//    }
-//    capitals.Add(kvInput[0], kvInput[1]);
-//    }
-//}
-
-//void afficherRecherche()
-//{
-//    // Rechercher une capitale à partir d'un pays
-//    while (true)
-//    {
-//        Console.Write("Rechercher une capitale à partir d'un pays ('stop' pour revenir au menu principal): ");
-//        string input = Console.ReadLine();
-//        if (input == "stop") break;
-//        if (capitals.ContainsKey(input))
-//            Console.WriteLine($"La capitale de {input} est {capitals[input]}");
-//        else
-//            Console.WriteLine("Cette capitale n'a aucun pays d'associé.");
-//    }
-//}
+void afficherRecherche()
+{
+    // Rechercher une capitale à partir d'un pays
+    while (true)
+    {
+        Console.Write("Rechercher une capitale à partir d'un pays ('stop' pour revenir au menu principal): ");
+        string input = Console.ReadLine();
+        if (input == "stop") break;
+        if (capitals.ContainsKey(input))
+            Console.WriteLine($"La capitale de {input} est {capitals[input]}");
+        else
+            Console.WriteLine("Cette capitale n'a aucun pays d'associé.");
+    }
+}
+*/
 
 // -- Exercice 5 --
 // ----------------
@@ -948,10 +950,10 @@ void afficherSeparateur()
     Console.WriteLine( tirets );
 }
 
-//void print(string message)
-//{
-//    Console.WriteLine( message );
-//}
+void print(string message)
+{
+    Console.WriteLine(message);
+}
 
 //afficherSeparateur();
 //print(message: "coucou") ;
@@ -963,6 +965,23 @@ void afficherSeparateur()
 // -- Exercice 2
 // -------------
 
+int Additionner(int a, int b)
+{
+    return a + b;
+}
+
+List<int> numbers = new List<int>();
+while (true)
+{
+    print("Veuillez entrer un nombre (0 pour arrêter) : ");
+    int input = Convert.ToInt32(Console.ReadLine());
+    if (input == 0) break;
+    numbers.Add(input);
+}
+int sum = 0;
+foreach (int a in numbers)
+    sum += a;
+print($"\t Résultat : {numbers.Sum()}");
 
 
 
