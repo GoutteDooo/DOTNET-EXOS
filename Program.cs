@@ -676,108 +676,191 @@ while (true)
 
 // -- Variables Globales --
 // ------------------------
-List<int> notes = new List<int>(); // tableau dyna de notes de longueur 0 à l'initialisation
-int input;
+//List<int> notes = new List<int>(); // tableau dyna de notes de longueur 0 à l'initialisation
+//int input;
 
-// Boucle infini
-while(true)
+//// Boucle infini
+//while(true)
+//{
+//    afficherMenu();
+//    // Demander une entrée utilisateur
+//    input = Convert.ToInt32(Console.ReadLine());
+//    Console.Clear();
+//    if (input < 0 || input > 4) continue; // Si entrée invalide, recommencer
+//    if (input == 0) Environment.Exit(0);
+//    if (input == 1) saisirNotes();
+//    // Si le tableau ne comporte pas encore de notes, interdire l'accès à ces options
+//    if (notes.Count == 0)
+//    {
+//        Console.ForegroundColor = ConsoleColor.Red;
+//        Console.WriteLine("Aucune note n'a encore été entrée!");
+//        continue;
+//    }
+//    if (input == 2) afficherNoteMax();
+//    if (input == 3) afficherNoteMin();
+//    if (input == 4) afficherNoteMoy();
+//}
+
+//void saisirNotes()
+//{
+//    // Colorer en vert
+//    Console.ForegroundColor = ConsoleColor.Green;
+//    // Afficher texte de saisie
+//    Console.WriteLine("------ Saisir les notes ------\n" +
+//        "(999 pour stopper la saisie\n");
+//    // Réinitialiser les couleurs
+//    Console.ResetColor();
+//    // Boucle infinie
+//    while (true)
+//    {
+//        // Demander à l'utilisateur de saisir la note "notes.Length + 1"
+//        Console.Write($"Merci de saisir la note {notes.Count + 1} (sur /20) : ");
+//        bool estEntier = int.TryParse(Console.ReadLine(), out int note);
+
+//        // Si la note est de 999, break la boucle
+//        if (note == 999) {
+//            // On clear la console pour pouvoir réafficher le menu principal
+//            Console.Clear();
+//            break;
+//        }
+//        // Si la note n'est pas comprise entre 0 et 20 ou que l'utilisateur a fait une erreur de saisie
+//        if (!estEntier || note < 0 || note > 20)
+//        {
+//            // Afficher l'erreur
+//            Console.ForegroundColor= ConsoleColor.Red;
+//            Console.WriteLine("\t\tErreur de saisie, la note est sur 20 !");
+//            Console.ResetColor();
+//            // Relancer une itération
+//            continue;
+//        }
+
+//        // Sinon, cela veut dire que l'on a entré une bonne note
+//        notes.Add(note); // Ajouter cette note à la liste
+//    }
+//}
+
+//static void afficherMenu()
+//{
+//    Console.ResetColor();
+//    Console.Write("--- Gestion des notes avec menu ---\n" +
+//        "1---Saisir les notes\n" +
+//        "2---La plus grande note\n" +
+//        "3---La plus petite note\n" +
+//        "4---La moyenne des notes\n" +
+//        "0---Quitter\n" +
+//        "\n" +
+//        "Faites votre choix: ");
+//}
+
+//void afficherNoteMax()
+//{
+//    Console.ForegroundColor = ConsoleColor.Green;
+//    Console.WriteLine("------ La plus grande note ------\n" +
+//        "\n" +
+//        $"La note la plus grande est: {notes.Max()}/20\n");
+//}
+
+//void afficherNoteMin()
+//{
+//    Console.ForegroundColor = ConsoleColor.Red;
+//    Console.WriteLine("------ La plus petite note ------\n" +
+//        "\n" +
+//        $"La note la plus petite est : {notes.Min()}/20\n");
+//}
+
+//void afficherNoteMoy()
+//{
+//    Console.ForegroundColor = ConsoleColor.Blue;
+//    Console.WriteLine("------ La moyenne des notes ------\n" +
+//        "\n" +
+//        $"La note moyenne est de : {Math.Round(notes.Average(), 2)}/20\n");
+//}
+
+// ---------------------------
+// -- Les Collections en C# --
+// ---------------------------
+
+// -- Exercice 1 --
+// ----------------
+/*
+int[] notes = { 10, 12, 15, 8 };
+int sum = 0;
+if (notes.Length == 0) // si tableau vide, on arrête le programme
 {
-    afficherMenu();
-    // Demander une entrée utilisateur
-    input = Convert.ToInt32(Console.ReadLine());
-    // Si entrée invalide, recommencer
-    Console.Clear();
-    if (input < 0 || input > 4) continue;
-    if (input == 0) Environment.Exit(0);
-    if (input == 1) saisirNotes();
-    // Si le tableau ne comporte pas encore de notes, interdire l'accès à ces options
-    if (notes.Count == 0)
+    Console.WriteLine("Tableau vide, pas de calculs possible.");
+    return;
+}
+;
+foreach(int note in notes)
+{
+    sum += note;
+}
+Console.WriteLine($"La moyenne vaut : {sum / notes.Length}");
+*/
+
+// -- Exercice 2 --
+// ----------------
+/*
+int[] notes = { 10, 12, 15, 8 };
+Console.WriteLine($"Min: {notes.Min()}\n" +
+                    $"Max: {notes.Max()}\n" +
+                    $"Moy: {notes.Average()}");
+*/
+
+/*
+Console.Write("Veuillez entrer le nombre de prénoms:");
+int n = Convert.ToInt32(Console.ReadLine());
+
+List<string> prenoms = new List<string>();
+for (int i = 0; i < n; i++)
+{
+    Console.WriteLine($"Entrer le prénom n°{i+1}: ");
+    string prenom = Console.ReadLine();
+    prenoms.Add(prenom);
+}
+prenoms.Sort();
+Console.WriteLine("Voici les prénoms triés par ordre alphabetique: ");
+foreach (string p in prenoms)
+    Console.WriteLine(Char.ToUpper(p[0]) + p[1..p.Length]);
+
+Console.Write("Quel prénom souhaitez-vous vérifier ?");
+string? verif = Console.ReadLine();
+if (prenoms.Contains(verif)) Console.WriteLine("Il existe!"); else Console.WriteLine("Il n'existe pas!"); ;
+prenoms.RemoveAll(p => p.Length < 4);
+
+Console.WriteLine("Voici les prénoms après avoir supprimé les prénoms à moins de 4 lettres: ");
+foreach (string p in prenoms)
+    Console.WriteLine(Char.ToUpper(p[0]) + p[1..p.Length]);
+*/
+
+// -- Exercice 4 --
+// ----------------
+var capitals = new Dictionary<string, string>();
+while (true)
+{
+    Console.Write("Entrez un pays et sa capitale ([pays] [capitale]) ('stop' si vous souhaitez arrêter) ");
+    string? input = Console.ReadLine();
+    if (input == "stop") break;
+
+    string[] kvInput = input.Split(" ");
+    if (kvInput.Length != 2 || kvInput[0] == "" || kvInput[1] == "")
     {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("Aucune note n'a encore été entrée!");
+        Console.WriteLine("Erreur lors de l'écriture, veuillez recommencer SVP.");
         continue;
     }
-    if (input == 2) afficherNoteMax();
-    if (input == 3) afficherNoteMin();
-    if (input == 4) afficherNoteMoy();
+    capitals.Add(kvInput[0], kvInput[1]);
 }
-
-void saisirNotes()
+// Rechercher une capitale à partir d'un pays
+while(true)
 {
-    // Colorer en vert
-    Console.ForegroundColor = ConsoleColor.Green;
-    // Afficher texte de saisie
-    Console.WriteLine("------ Saisir les notes ------\n" +
-        "(999 pour stopper la saisie\n");
-    // Réinitialiser les couleurs
-    Console.ResetColor();
-    // Boucle infinie
-    while (true)
-    {
-        // Demander à l'utilisateur de saisir la note "notes.Length + 1"
-        Console.Write($"Merci de saisir la note {notes.Count + 1} (sur /20) : ");
-        bool estEntier = int.TryParse(Console.ReadLine(), out int note);
-
-        // Si la note est de 999, break la boucle
-        if (note == 999) {
-            // On clear la console pour pouvoir réafficher le menu principal
-            Console.Clear();
-            break;
-        }
-        // Si la note n'est pas comprise entre 0 et 20 ou que l'utilisateur a fait une erreur de saisie
-        if (!estEntier || note < 0 || note > 20)
-        {
-            // Afficher l'erreur
-            Console.ForegroundColor= ConsoleColor.Red;
-            Console.WriteLine("\t\tErreur de saisie, la note est sur 20 !");
-            Console.ResetColor();
-            // Relancer une itération
-            continue;
-        }
-
-        // Sinon, cela veut dire que l'on a entré une bonne note
-        notes.Add(note); // Ajouter cette note à la liste
-    }
+    Console.Write("Rechercher une capitale à partir d'un pays ('stop' pour arrêter le programme): ");
+    string input = Console.ReadLine();
+    if (input == "stop") break;
+    if (capitals.ContainsKey(input))
+        Console.WriteLine($"La capitale de {input} est {capitals[input]}");
+    else
+        Console.WriteLine("Cette capitale n'a aucun pays d'associé.");
 }
-
-static void afficherMenu()
-{
-    Console.ResetColor();
-    Console.Write("--- Gestion des notes avec menu ---\n" +
-        "1---Saisir les notes\n" +
-        "2---La plus grande note\n" +
-        "3---La plus petite note\n" +
-        "4---La moyenne des notes\n" +
-        "0---Quitter\n" +
-        "\n" +
-        "Faites votre choix: ");
-}
-
-void afficherNoteMax()
-{
-    Console.ForegroundColor = ConsoleColor.Green;
-    Console.WriteLine("------ La plus grande note ------\n" +
-        "\n" +
-        $"La note la plus grande est: {notes.Max()}/20\n");
-}
-
-void afficherNoteMin()
-{
-    Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine("------ La plus petite note ------\n" +
-        "\n" +
-        $"La note la plus petite est : {notes.Min()}/20\n");
-}
-
-void afficherNoteMoy()
-{
-    Console.ForegroundColor = ConsoleColor.Blue;
-    Console.WriteLine("------ La moyenne des notes ------\n" +
-        "\n" +
-        $"La note moyenne est de : {Math.Round(notes.Average(), 2)}/20\n");
-}
-
-
 
 
 //KATAS
