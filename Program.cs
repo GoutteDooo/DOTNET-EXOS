@@ -512,7 +512,8 @@ list = { 1,2,3,4,5,4,6,7,8,9,10};
 List<int> testList = list;
 */
 
-using System.Linq; // Nécessaire pour Max, Min, Average
+using System.Linq;
+using System.Reflection.Metadata.Ecma335; // Nécessaire pour Max, Min, Average
 
 //EXO 5
 /*
@@ -819,9 +820,10 @@ for (int i = 0; i < n; i++)
     prenoms.Add(prenom);
 }
 prenoms.Sort();
-Console.WriteLine("Voici les prénoms triés par ordre alphabetique: ");
-foreach (string p in prenoms)
-    Console.WriteLine(Char.ToUpper(p[0]) + p[1..p.Length]);
+Console.WriteLine("Voici les prénoms triés par ordre alphabetique: " + 
+String.Join(",",prenoms));
+//foreach (string p in prenoms)
+//    Console.WriteLine(Char.ToUpper(p[0]) + p[1..p.Length]);
 
 Console.Write("Quel prénom souhaitez-vous vérifier ?");
 string? verif = Console.ReadLine();
@@ -835,9 +837,38 @@ foreach (string p in prenoms)
 
 // -- Exercice 4 --
 // ----------------
+
 var capitals = new Dictionary<string, string>();
 while (true)
 {
+    afficherMenu();
+    //Saisie utilisateur
+    Console.Write("Veuillez saisir une commande: ") ;
+    int input = Convert.ToInt32(Console.ReadLine());
+    if (input == 0) Environment.Exit(0);
+    Console.Clear();
+    if (input == 1) afficherInsertion();
+    if (input == 2) afficherRecherche();
+
+}
+void afficherMenu()
+{
+    Console.WriteLine("--- Pays et Capitales ---\n" +
+        "\n" +
+        "\t (1) - Insérez un pays et une capitale\n" +
+        "\t (2) - Rechercher une capitale\n" +
+        "\n" +
+        "\t (0) - Quitter le programme" +
+        "\n" +
+        $"Le nombre total de couple pays/capitale est de : {capitals.Count}"
+        );
+
+}
+
+void afficherInsertion()
+{
+    while (true)
+    {
     Console.Write("Entrez un pays et sa capitale ([pays] [capitale]) ('stop' si vous souhaitez arrêter) ");
     string? input = Console.ReadLine();
     if (input == "stop") break;
@@ -849,19 +880,59 @@ while (true)
         continue;
     }
     capitals.Add(kvInput[0], kvInput[1]);
-}
-// Rechercher une capitale à partir d'un pays
-while(true)
-{
-    Console.Write("Rechercher une capitale à partir d'un pays ('stop' pour arrêter le programme): ");
-    string input = Console.ReadLine();
-    if (input == "stop") break;
-    if (capitals.ContainsKey(input))
-        Console.WriteLine($"La capitale de {input} est {capitals[input]}");
-    else
-        Console.WriteLine("Cette capitale n'a aucun pays d'associé.");
+    }
+    Console.Clear();
 }
 
+void afficherRecherche()
+{
+    // Rechercher une capitale à partir d'un pays
+    while (true)
+    {
+        Console.Write("Rechercher une capitale à partir d'un pays ('stop' pour revenir au menu principal): ");
+        string input = Console.ReadLine();
+        if (input == "stop") break;
+        if (capitals.ContainsKey(input))
+            Console.WriteLine($"La capitale de {input} est {capitals[input]}");
+        else
+            Console.WriteLine("Cette capitale n'a aucun pays d'associé.");
+    }
+    Console.Clear();
+}
+
+// -- Exercice 5 --
+// ----------------
+/*
+int[] notes = { 12, 15, 20, 8, 9 };
+List<string> prenoms = new List<string> { "Alice", "Bob", "Charlie" };
+var capitales = new Dictionary<string, string>
+{
+    ["France"] = "Paris",
+    ["Espagne"] = "Madrid",
+    ["Italie"] = "Rome",
+};
+
+int index = 0;
+foreach (int note in notes)
+{
+    Console.Write(note + " ");
+    index++;
+}
+Console.WriteLine($"\nnombre d'éléments parcourus: {index}\n\n");
+
+index = 0;
+foreach (string prenom in prenoms)
+    Console.Write($"{++index}: {prenom}, ");
+Console.WriteLine($"\nnombre d'éléments parcourus: {index}\n\n");
+
+index = 0;
+foreach ((string pays, string capitale) in capitales)
+{
+    Console.Write($"{pays} : {capitale}\n");
+    index++;
+}
+Console.WriteLine($"nombre d'éléments parcourus: {index}");
+*/
 
 //KATAS
 /*
@@ -874,6 +945,7 @@ for (int i = 0; i < list.Length-step; i++)
     for (int j = 0; j < step; j++) temp[j] = list[i + j];
     newList.Add(temp);
 }
+
 
 for (int i = 0; i < newList.Count; i++)
 {
