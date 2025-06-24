@@ -1136,6 +1136,7 @@ namespace MyApp
 
             // -- Exercice 7
             // -------------
+            /*
             Func<int, int> Triple = x => x * 3;
             Console.WriteLine(Triple(3));
             
@@ -1145,6 +1146,27 @@ namespace MyApp
             List<int> ints = new List<int> { 1, 2, 3, 4, 5 };
             ints.RemoveAll(x => x % 2 != 0);
             Console.WriteLine(string.Join(" ,", ints));
+            */
+            // -- Exercice 8
+            // -------------
+            /*
+            // Exemple fictif
+            void Traiter(int a, int b, int c)
+            {
+                // calcule la somme des paramètres
+                int[] somme = new int[] { a, b, c };
+                Console.WriteLine(somme.Sum());
+
+                // S'ils sont tous positifs
+                Func<int, bool> EstPositif = n => n > 0;
+                if (EstPositif(a) && EstPositif(b) && EstPositif(c))
+                    Console.WriteLine("Tous positifs");
+
+                // calculer la moyenne
+                Func<int[], int> calculerMoyenne = t => t.Sum() / t.Length;
+                Console.WriteLine($"Moyenne = {calculerMoyenne(somme)}");
+            }
+            */
 
             // 51. Écrire un programme qui affiche la table de multiplication de 1 à 10 avec des boucles imbriquées.
             /*
