@@ -15,10 +15,11 @@ namespace DOTNET_DAY2.Exercices.Complexe
             // Lancement du jeu
             // Affichage générique
             Console.WriteLine("--- MASTERMIND ---");
-            // Variables globales : compteurCouleursBienPlacées, compteurCouleurPrésentesMalPlacées, couleursDuMJ, couleursChoisies, nombreDeCoups = 0
-            int compteurCouleursBienPlacées = 0,
-                compteurCouleursPrésentesMalPlacées = 0,
-                nombreDeCoups = 0,
+            // -- Variables globales --
+            // ------------------------
+            int compteurCouleursBienPlacées,
+                compteurCouleursPrésentesMalPlacées,
+                nombreDeCoups,
                 nbCoupsMax = 10;
             string[] couleursDuMJ = new string[4],
                 couleursChoisies = new string[4];

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DOTNET_DAY2
+namespace DOTNET_DAY2.Exercices
 {
     internal class Katas
     {
