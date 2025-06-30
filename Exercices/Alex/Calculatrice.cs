@@ -26,29 +26,27 @@ namespace DOTNET_DAY2.Exercices.Alex
                 }
                 string? input = Console.ReadLine();
                 input = input.Trim(); // Retire les espaces inutiles
-                calculs.Add(input.ToString());
                 /* ERROR CHECKING */
                 // Si entrée doit être un nombre
                 if (numState)
                 {
                     if (!float.TryParse(input, out float nombre))
                     {
-                        calculs.RemoveAt(calculs.Count - 1);
                         Console.Clear();
                         Console.WriteLine("ERREUR");
                         continue;
                     }
-
+                    calculs.Add(input.ToString());
                 }
                 else // Si entrée doit être un opérateur
                 {   
                     if (input.Length != 1 || !"+-/*^=".Contains(input))
                     {
-                        calculs.RemoveAt(calculs.Count - 1);
                         Console.Clear();
                         Console.WriteLine("ERREUR");
                         continue;
                     }
+                    calculs.Add(input.ToString());
                     if (input == "=")
                     {
                         double resultat = Calculer(calculs);
@@ -75,7 +73,10 @@ namespace DOTNET_DAY2.Exercices.Alex
              */
             double Calculer(List<string> calculs)
             {
+                // Puissances prioritaires
                 AppliquerOperation(calculs, "^", (a, b) => Math.Pow(a, b));
+                // Racines carrées
+                
                 // Vérifie s'il y a des '*' et les calcules
                 AppliquerOperation(calculs, "*", (a, b) => a * b);
                 // Vérifie s'il y'a des '/' et les calcules
