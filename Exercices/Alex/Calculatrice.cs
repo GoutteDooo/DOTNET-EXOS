@@ -8,47 +8,58 @@ using System.Threading.Tasks;
 
 namespace DOTNET_DAY2.Exercices.Alex
 {
+
+    /**
+     * A chaque fois que l'utilisateur a entré un nombre, il doit entrer un opérateur, sinon une erreur est affichée, l'invitant à une nouvelle entrée
+     * Lorsque l'utilisateur appuie sur "entrée", tout les éléments de la liste sont calculés dans une fonction "Calculer"
+     * Tous les éléments de la liste sont ensuite supprimé
+     * Et insère "resultat" dans la liste
+     * La liste est affichée en permanence sous forme de string dans le format suivant :
+     * n_o_n_o_n_... (n pour nombre, o pour opérateur, _ pour espace)
+     * Et l'entrée utilisateur est toujours située un espace après
+    */
     internal class Calculatrice
     {
         string[] caracteresValides = { "+","-","/","*","^",".","," };
         List<string> calculs = new();
         double dernierResultat = 0;
-        /** ----------------------
+        string? input;
+
+
+        /** 
+         *  ----------------------
          *  ---- CALCULATRICE ----
          *  ----------------------
          * Se charge d'afficher les calculs effectués par l'utilisateur
          * Lorsque l'utilisateur appuie sur "entrée", le résultat est affiché
          */
-        public void DisplayCalc()
+        public void AfficherExpression()
         {
             while (true)
             {
-                // Afficher la ligne de calcul
-                Console.Write($"{(dernierResultat == 0 ? "" : dernierResultat)} ");
+                Console.Write("|------------- Calculatrice -------------|\n" +
+                    $"|{new string(' ',40)}|\n" +
+                    $"|{new string(' ', 40)}|\n" +
+                    $"|{new string(' ', 40)}|\n");
+                // Afficher la ligne de l'expression
+                AfficherLigneExpression(input, dernierResultat);
                 // L'utilisateur doit commencer par entrer un nombre, sinon une erreur sera affichée
-                string? input = Console.ReadLine();
+                input = Console.ReadLine();
                 input = input.Trim(); // Retire les espaces inutiles
 
                 // S'il y'a eu un résultat précédemment, l'ajouter au tout début de la string de l'user
                 input = dernierResultat.ToString() + input;
 
-                Console.WriteLine("input: " + input);
                 calculs = ConvertirCalculs(input);
+
+                input = $"{string.Join(" ", calculs)}"; // Pour l'affichage après le console.Clear
 
                 double resultat = Calculer(calculs);
                 calculs.Clear();
-                dernierResultat = resultat;
+                dernierResultat = Math.Round(resultat, 7);
 
                 Console.Clear();
             }
-
-            // A chaque fois que l'utilisateur a entré un nombre, il doit entrer un opérateur, sinon une erreur est affichée, l'invitant à une nouvelle entrée
-            // Lorsque l'utilisateur appuie sur "entrée", tout les éléments de la liste sont calculés dans une fonction "Calculer"
-            // Tous les éléments de la liste sont ensuite supprimé
-            // Et insère "resultat" dans la liste
-            // La liste est affichée en permanence sous forme de string dans le format suivant :
-            // n_o_n_o_n_... (n pour nombre, o pour opérateur, _ pour espace)
-            // Et l'entrée utilisateur est toujours située un espace après
 
         }
 
@@ -100,6 +111,7 @@ namespace DOTNET_DAY2.Exercices.Alex
                 }
             }
         }
+
         /**
          * Converti la string d'opération passée en paramètre en une liste de string.
          * 
@@ -117,7 +129,6 @@ namespace DOTNET_DAY2.Exercices.Alex
             if (expression[0] == '+' || expression[0] == '-')
                 expression = '0' + expression;
 
-            Console.WriteLine($"expression: {string.Join(",", expression.ToArray())}");
             // 2. Vérifier qu'il n'y a pas de caractères bizarres
             foreach(char c in expression)
             {
@@ -135,8 +146,6 @@ namespace DOTNET_DAY2.Exercices.Alex
             {
                 calculsListe.Add(match.ToString());
             }
-            Console.WriteLine("La liste après le regex:");
-            AfficherListe(calculsListe);
             // Ici, on obtient une liste contenant l'expression entrée avec les opérateurs, mais les floatings ne sont pas encore bons
             // Exemple de liste : ["12",".","25","+","40"]
             // On a besoin de concaténer les floatings
@@ -178,6 +187,13 @@ namespace DOTNET_DAY2.Exercices.Alex
             return calculsListe;
         }
 
+        void AfficherLigneExpression(string input, double dernierResultat)
+        { 
+            Console.Write(
+                $"|\t{(input == null ? new string(' ', 33) : input[0] == '0' ? input.Substring(1) + new string(' ', 34 - input.Length) : input + new string(' ', 33 - input.Length))}|\n" +
+                $"|\t{(dernierResultat == 0 ? "" : "= " + dernierResultat)}");
+
+        } 
         void AfficherListe(List<string> liste)
         {
             Console.WriteLine($"{string.Join("/ ",liste.ToArray())}");

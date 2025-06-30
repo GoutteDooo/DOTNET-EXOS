@@ -15,7 +15,7 @@ namespace DOTNET_DAY2
         static void Main(string[] args)
         {
             Calculatrice calculatrice = new Calculatrice();
-            calculatrice.DisplayCalc();
+            calculatrice.AfficherExpression();
         }
     }
 }
