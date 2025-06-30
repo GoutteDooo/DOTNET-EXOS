@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace DOTNET_DAY2.Exercices.Alex
 {
     internal class Calculatrice
     {
+        string[] caracteresValides = { "+","-","/","*","^","." };
         List<string> calculs = new();
         bool numState = true;
         /**
+         * Calculatrice SIMPLE
          * Se charge d'afficher les calculs effectués par l'utilisateur
          * Lorsque l'utilisateur appuie sur "entrée", le résultat est affiché
          */
         public void DisplayCalc()
         {
-            // L'utilisateur doit commencer par entrer un nombre, sinon une erreur sera affichée
             while (true)
             {
                 // Afficher la ligne de calcul
@@ -24,37 +26,16 @@ namespace DOTNET_DAY2.Exercices.Alex
                 {
                     Console.Write($"{s} ");
                 }
+                // L'utilisateur doit commencer par entrer un nombre, sinon une erreur sera affichée
                 string? input = Console.ReadLine();
                 input = input.Trim(); // Retire les espaces inutiles
-                /* ERROR CHECKING */
-                // Si entrée doit être un nombre
-                if (numState)
-                {
-                    if (!float.TryParse(input, out float nombre))
-                    {
-                        Console.Clear();
-                        Console.WriteLine("ERREUR");
-                        continue;
-                    }
-                    calculs.Add(input.ToString());
-                }
-                else // Si entrée doit être un opérateur
-                {   
-                    if (input.Length != 1 || !"+-/*^=".Contains(input))
-                    {
-                        Console.Clear();
-                        Console.WriteLine("ERREUR");
-                        continue;
-                    }
-                    calculs.Add(input.ToString());
-                    if (input == "=")
-                    {
-                        double resultat = Calculer(calculs);
-                        calculs.Clear();
-                        calculs.Add(Convert.ToString(resultat));
-                        continue;
-                    }
-                }
+
+                ConvertirCalculs(input);
+                return;
+                
+
+                // Sinon
+                calculs.Add(input.ToString());
                 numState = !numState;
                 Console.Clear();
             }
@@ -75,8 +56,6 @@ namespace DOTNET_DAY2.Exercices.Alex
             {
                 // Puissances prioritaires
                 AppliquerOperation(calculs, "^", (a, b) => Math.Pow(a, b));
-                // Racines carrées
-                
                 // Vérifie s'il y a des '*' et les calcules
                 AppliquerOperation(calculs, "*", (a, b) => a * b);
                 // Vérifie s'il y'a des '/' et les calcules
@@ -89,6 +68,11 @@ namespace DOTNET_DAY2.Exercices.Alex
                 return Convert.ToDouble(calculs[0]);
             }
         
+            /**
+             * Applique l'opération de la fonction "operation" passée en paramètre
+             * Exemple :
+             *      Func<double, double, double> operation reçoit (a, b) et retourne a * b
+             */
             void AppliquerOperation(List<string> calculs, string operateur, Func<double, double, double> operation)
             {
                 // Parcourir la liste et 
@@ -113,5 +97,95 @@ namespace DOTNET_DAY2.Exercices.Alex
                 }
             }
         }
+        /**
+         * Converti la string d'opération passée en paramètre en une liste de string.
+         * 
+         * Exemple :
+         *  operations = "1+2.5-8*4/5.25"
+         *  
+         *  retour : [1.0, "+", 2.5, "-", 8.0, "*", 4.0, "/", 5.25]
+        */
+        List<string> ConvertirCalculs(string expression)
+        {
+            // Plusieurs choses à vérifier
+            // 1. Enlever tout les whitespaces inutiles
+            expression = expression.Replace(" ", "");
+            Console.WriteLine($"expression: {string.Join(",", expression.ToArray())}");
+            // 1. Vérifier qu'il n'y a pas de caractères bizarres
+            foreach(char c in expression)
+            {
+                // throw
+                if (!caracteresValides.Contains(c.ToString()) && !char.IsDigit(c))
+                {
+                    Console.WriteLine("ERREUR DANS L'ECRITURE DE L'OPERATION");
+                    return new List<string>();
+                }
+            }
+
+            bool numState = true;
+            List<string> calculsListe = new List<string>();
+            var matches = Regex.Matches(expression, @"\d+|\+|\-|\*|\/|\^|\."); // Utilisation d'un regex pour "splitter" les opérateurs
+            foreach (Match match in matches)
+            {
+                calculsListe.Add(match.ToString());
+                Console.WriteLine(match.ToString());
+            }
+            return new List<string>();
+
+            //// 3. Faire l'insertion de nombre - opérateur - nombre - opérateur - ...
+            //for (int i = 0; i < expression.Length; i++)
+            //{
+            //    char c = expression[i];
+            //    /* ERROR CHECKING */
+            //    // Si entrée doit être un nombre
+            //    if (numState)
+            //    {
+            //        // Récupérer le nombre i à insérer dans la liste
+            //        while (char.IsDigit(c)) // Pour chaque caractère
+            //        {
+            //            if (!float.TryParse(c.ToString(), out float nombre))
+            //            {
+            //                Console.Clear();
+            //                Console.WriteLine("ERREUR LORS DU PARSING");
+            //                break;
+            //            }
+
+            //        }
+            //    }
+            //    else // Si entrée doit être un opérateur
+            //    {
+            //        if (c.Length != 1 || !"+-/*p=".Contains(c))
+            //        {
+            //            Console.Clear();
+            //            Console.WriteLine("ERREUR LORS DU PARSING");
+            //            break;
+            //        }
+            //    }
+            //    // Si l'utilisateur veut le résultat
+            //    if (input == "=")
+            //    {
+            //        double resultat = Calculer(expression);
+            //        expression.Clear();
+            //        expression.Add(Convert.ToString(resultat));
+            //        continue;
+            //    }
+            //}
+
+            //return new List<string> { expression };
+        }
+
+        string EnleverEspaces(string phrase)
+        {
+            for (int i = 0; i < phrase.Length; i++)
+            {
+                if (phrase[i] == ' ')
+                {
+                    phrase.Remove(i);
+                }
+            }
+            Console.WriteLine("Après conversion");
+            return phrase;
+        }
+
     }
 }
