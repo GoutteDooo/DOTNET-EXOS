@@ -12,7 +12,7 @@ namespace DOTNET_DAY2.Exercices.Alex
         bool numState = true;
         /**
          * Se charge d'afficher les calculs effectués par l'utilisateur
-         * Lorsque l'utilisateura appuie sur "entrée", le résultat est affiché
+         * Lorsque l'utilisateur appuie sur "entrée", le résultat est affiché
          */
         public void DisplayCalc()
         {
@@ -42,7 +42,7 @@ namespace DOTNET_DAY2.Exercices.Alex
                 }
                 else // Si entrée doit être un opérateur
                 {   
-                    if (input.Length != 1 || !"+-/*=".Contains(input))
+                    if (input.Length != 1 || !"+-/*^=".Contains(input))
                     {
                         calculs.RemoveAt(calculs.Count - 1);
                         Console.Clear();
@@ -60,6 +60,7 @@ namespace DOTNET_DAY2.Exercices.Alex
                 numState = !numState;
                 Console.Clear();
             }
+
             // A chaque fois que l'utilisateur a entré un nombre, il doit entrer un opérateur, sinon une erreur est affichée, l'invitant à une nouvelle entrée
             // Lorsque l'utilisateur appuie sur "entrée", tout les éléments de la liste sont calculés dans une fonction "Calculer"
             // Tous les éléments de la liste sont ensuite supprimé
@@ -74,7 +75,7 @@ namespace DOTNET_DAY2.Exercices.Alex
              */
             double Calculer(List<string> calculs)
             {
-
+                AppliquerOperation(calculs, "^", (a, b) => Math.Pow(a, b));
                 // Vérifie s'il y a des '*' et les calcules
                 AppliquerOperation(calculs, "*", (a, b) => a * b);
                 // Vérifie s'il y'a des '/' et les calcules
@@ -84,8 +85,6 @@ namespace DOTNET_DAY2.Exercices.Alex
                 // Vérifie s'il y'a des '-' et les calcules
                 AppliquerOperation(calculs, "-", (a, b) => a - b);
 
-                //TEST AFFICHAGE
-                Console.WriteLine($"{string.Join(", ", calculs.ToArray())}");
                 return Convert.ToDouble(calculs[0]);
             }
         
